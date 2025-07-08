@@ -20,15 +20,13 @@ export async function serveProducts(req, res) {
     );
 
     // Filter based on price and popularityScore fields from query parameters
-    const filterKeys = Object.keys(req.query).filter(
-      (key) => key === 'price' || key === 'popularity'
-    );
+    // Get filter keys from query parameters
+    const filterValues = Object.values(filterKeys.map((key) => req.query[key]));
 
     // If filterKeys are not empty, filter the products and return the filtered data
-    if (filterKeys.length > 0) {
-      // Get filter values from query parameters
-      const filterValues = Object.values(
-        filterKeys.map((key) => req.query[key])
+    if (filterValues.length > 0) {
+      const filterKeys = Object.keys(req.query).filter(
+        (key) => key === 'price' || key === 'popularity'
       );
 
       // Filter products based on the provided filters
