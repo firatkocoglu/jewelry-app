@@ -28,7 +28,7 @@ export async function serveProducts(req, res) {
     const filterValues = Object.values(filterKeys.map((key) => req.query[key]));
 
     // If filterValues are not empty, filter the products and return the filtered data
-    if (filterValues.length > 0) {
+    if (filterValues[0] !== '' && filterValues[1] !== '') {
       // Filter products based on the provided filters
       const filteredData = products.filter((product) => {
         return filterKeys.every((key, index) => {
@@ -43,7 +43,6 @@ export async function serveProducts(req, res) {
           }
         });
       });
-
       res.status(200).json(filteredData);
     } else {
       // If no filters are applied, return all products
