@@ -25,7 +25,7 @@ export async function serveProducts(req, res) {
     );
 
     // Get filter values from query parameters
-    const filterValues = Object.values(Object.map((key) => req.query[key]));
+    const filterValues = Object.values(filterKeys.map((key) => req.query[key]));
 
     // If filterValues are not empty, filter the products and return the filtered data
     if (filterValues.length > 0) {
